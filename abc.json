@@ -1,0 +1,21 @@
+{
+    "name": "test",
+    "desc": "description of your app",
+    "type": "clam",
+    "port": "8089",
+    "proxyPort": "8090",
+    "group": "ushop",
+    "src": "true",
+    "version": "0.0.1",
+    "combohtml": "true",
+    "env": "daily",
+    "author": {
+        "name": "wangshiqing",
+        "password": "koudai123$%^",
+        "email": "shilling.wsq@alibaba-inc.com"
+    },
+    "repository": {
+        "type": "svn",
+        "url": "http://svn.geili.cn/geili_web/uss_server/ushop/branches/H5BuildTest"
+    }
+}

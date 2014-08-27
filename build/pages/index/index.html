@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# youshopmobile: http://ogp.me/ns/fb/youshopmobile#">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!--Facebook Open Graph tags-->
+    <meta property="og:type" content="youshopmobile:shop"/>
+    <meta property="og:title" content="<<$title>>"/>
+    <meta property="og:site_name" content="<<$site_name>>"/>
+    <meta property="og:url" content="<<$url>>"/>
+    <meta property="og:description" content="<<$description>>"/>
+    <meta property="og:image" content="<<$image0>>"/>
+    <meta property="fb:app_id" content="<<$app_id>>"/>
+    <meta property="youshopmobile:contact" content="<<$shareString>>" />
+
+    <!--twitter Open Graph tags-->
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:domain" content="youshop.com">
+    <meta name="twitter:site" content="YouShop">
+    <meta name="twitter:creator" content="<<$title>>">
+    <meta name="twitter:title" content="YouShop">
+    <meta name="twitter:image:src" content="<<$image0>>">
+    <meta name="twitter:url" content="<<$url>>">
+    <meta name="twitter:app:id:iphone" content="">
+    <meta name="twitter:app:id:ipad" content="">
+    <meta name="twitter:app:id:googleplay" content="">
+    <meta name="twitter:app:url:iphone" content="">
+    <meta name="twitter:app:url:ipad" content="">
+    <meta name="twitter:app:url:googleplay" content="">
+
+<title><<$title>></title>
+<link href="../../lib/base.css" type="text/css" rel="stylesheet"/>
+<link href="../../pages/index/index.css"  type="text/css" rel="stylesheet"/>
+</head>
+
+<body>
+<header id="common_hd" class="c_txt rel hide">
+    <a id="hd_back" class="abs comm_p8">Back</a>
+    <h1 class="hd_tle bold" id="index_back_tle">&nbsp;</h1>
+</header>
+
+<div id="wd_show">
+
+	<header id="index_hd" class="rel">
+        <div id="index_hd_abs" class="abs wrap">
+            <h3 id="vshop_icon" class="margin_auto"><img width="100%" height="100%"></h3>
+            <h1 id="hd_name" class="over_hidden ellipsis block wrap c_txt"></h1>
+
+        </div>
+        <div id="hd_bg" class="over_hidden rel"></div>
+        <p id="hd_intro" class="hide"></p>
+        <div id="showSNSBtn" class="hide socialContact">
+
+            <div class="hide" id="twitterShare"></div>
+            <div id="fb-like-div-wrap" class="hide"></div>
+        </div>
+
+    </header>
+    <section id="index_sec"></section>
+    <script id="tpl" type="text/template">
+
+        <div id="index_loading" class="loading">&nbsp;</div>
+        <div class="i_wrap margin_auto rel hide">
+            <h3 class="i_title abs">${index_favorites}:</h3>
+            <ul class="i_ul rel" id="top_ul">
+            </ul>
+            <div class="clear"></div>
+        </div>
+
+        <div class="i_wrap margin_auto rel hide" id="index_hot">
+            <h3 class="i_title abs">${index_best_selling}:</h3>
+            <ul class="i_ul rel" id="hot_ul">
+            </ul>
+            <div class="clear"></div>
+        </div>
+
+        <p id="scroll_loading_txt" class="c_txt hide"><img src="images/common/loading.gif" width="20" height="20"></p>
+        <a href="http://www.youshop.com" target="_blank" id="iWantAShopIndex" class="block c_txt for_gaq" data-for-gaq="index-youshop">${index_WantShop}</a>
+        <div id="my_frd" class="margin_auto hide">
+        	 <p id="frd_tle">${index_FriendlyShops}</p>
+            <ul id="frd_ul">
+            </ul>
+        </div>
+
+        <div id="item_empty" class="hide c_txt">${index_Empty} </div>
+    </script>
+
+    <footer>
+        <a id="cart" class="fix">
+            <em id="cart_bg" class="block">&nbsp;</em>
+            <em id="cart_icon" class="comm_p24 abs">&nbsp;</em>
+        </a>
+    </footer>
+</div>
+<div id="noShop" class="hide"> </div>
+<script id="tpl-noShop" type="text/template">
+
+        <header id="common_hd_none" class="c_txt">
+            <h1 class="hd_tle bold">YouShop</h1>
+        </header>
+        <div id="noShopShow" class="c_txt">${index_NoShop}</div>
+
+</script>
+
+<script src="../../lib/lang.js"></script>
+<script src="../../lib/base_H5.js"></script>
+<script src="../../lib/juicer.js"></script>
+<script src="index.js"></script>
+
+<!--script src="http://biaohou-project.googlecode.com/svn/trunk/koudai/weidian_H5/script/common/base_H5.js"></script-->
+</body>
+</html>

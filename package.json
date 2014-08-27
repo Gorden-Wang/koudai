@@ -1,0 +1,38 @@
+{
+    "name": "nodetest",
+    "version": "0.0.1",
+    "description": "a clam project",
+    "author": {
+        "name": "",
+        "email": ""
+    },
+	"repository": {
+        "type": "git",
+        "url": ""
+    },
+    "keywords": [
+        "clam", "Test"
+    ],
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-copy": "",
+        "grunt-contrib-uglify": "~0.2.0",
+        "grunt-contrib-clean": "~0.4.0",
+        "grunt-contrib-less": "~0.5.0",
+        "grunt-sass":"~0.10.0",
+        "grunt-contrib-cssmin": "~0.5.0",
+        "grunt-contrib-watch": "",
+
+        "clam-util":"",
+        "grunt-mytps":"",
+        "grunt-exec": "",
+        "grunt-flexcombo": "",
+		"grunt-combohtml":"",
+		"grunt-replace":"",
+
+		"grunt-prompt": "~1.1.0",
+        "grunt-relativeurl":""
+    },
+
+    "dependencies": {}
+}
