@@ -34,8 +34,6 @@ module.exports = function (grunt) {
         .concat(source_files.swf || []);
 
     all_files = all_files.concat('!**/*/build/**');
-    //all_files = all_files.concat('!libs/mtop.js');
-    //all_files = all_files.concat('!libs/seed.js');
 
     var relative = '';
     var base = 'http://s.youshop.com';
@@ -70,83 +68,6 @@ module.exports = function (grunt) {
                 src: 'build/*'
             }
         },
-
-        /**
-         * 将src目录中的KISSY文件做编译打包，仅解析合并，源文件不需要指定名称
-         *        KISSY.add(<名称留空>,function(S){});
-         *
-         *        @link https://github.com/daxingplay/grunt-kmc
-         *
-         * 如果需要只生成依赖关系表，不做合并，样例代码:
-         *   options: {
-         *       packages: [
-         *           {
-         *              name: '<%= pkg.name %>',
-         *              path: './src/',
-		 *				charset:'utf-8',
-		 *				ignorePackageNameInUri:true
-         *           }
-         *       ],
-		 *		depFilePath: 'build/map.js',// 生成的模块依赖表
-		 *		comboOnly: true,
-		 *		fixModuleName:true,
-		 *		copyAssets:true,
-		 *		comboMap: true
-         *   },
-         *   main: {
-         *       files: [
-         *           {
-		 *				// 这里指定项目根目录下所有文件为入口文件，自定义入口请自行添加
-         *              src: [ 'src/** /*.js', '!src/** /* /Gruntfile.js'],
-         *              dest: 'build/'
-         *           }
-         *       ]
-         *   }
-         */
-        kmc: {
-            options: {
-                depFilePath: 'build/mods.js',
-                comboOnly: true,
-                fixModuleName: true,
-                comboMap: true,
-                packages: [
-                    {
-                        ignorePackageNameInUri: true,
-                        name: '<%= pkg.name %>',
-                        path: '../',
-                        charset: 'utf-8'
-                    }
-                ],
-                //map: [['<%= pkg.name %>/src/', '<%= pkg.name %>/']]
-                map: [
-                    ['<%= pkg.name %>/build/', '<%= pkg.name %>/']
-                ]
-            },
-            main: {
-                files: [
-                    {
-                        expand: true,
-                        //cwd: 'src/',
-                        cwd: 'build/',
-                        src: source_files.js,
-                        //dest: 'build/'
-                        dest: 'src/'
-                    }
-                ]
-            }
-            // 若有新任务，请自行添加
-            /*
-             "simple-example": {
-             files: [
-             {
-             src: "a.js",
-             dest: "build/index.js"
-             }
-             ]
-             }
-             */
-        },
-
         // 将css文件中引用的本地图片上传CDN并替换url，默认不开启
         mytps: {
             options: {
@@ -195,7 +116,7 @@ module.exports = function (grunt) {
                     to: 'build/'
                 },
                 relative: relative,
-                combo: false
+                combo: true
             },
 
             main: {
@@ -547,7 +468,6 @@ module.exports = function (grunt) {
         base = grunt.config('grunt_default') || base;
 
 
-
         console.log("======" + base);
         var action =
             ['clean:build',
@@ -556,7 +476,7 @@ module.exports = function (grunt) {
                 'sass',
                 'copy:mods'
             ];
-        if(base == "yes"){
+        if (base == "yes") {
             action.push("relativeurl");
         }
 
@@ -577,10 +497,7 @@ module.exports = function (grunt) {
 
 
     // 默认构建任务
-    grunt.registerTask('build', ['prompt:grunt_default','prompt:uglify', 'exec_build']);
-
-
-
+    grunt.registerTask('build', ['prompt:grunt_default', 'prompt:uglify', 'exec_build']);
 
 
     grunt.registerTask('svninit', '初始化svn', function (type, msg) {
@@ -595,44 +512,5 @@ module.exports = function (grunt) {
         });
     });
 
-
-
-
-    // -------------------------------------------------------------
-    // 注册Grunt主流程
-    // -------------------------------------------------------------
-
-    return grunt.registerTask('default', 'Clam 默认流程', function (type, msg) {
-
-        var done = this.async();
-
-        // 获取当前分支
-        exec('git branch', function (err, stdout, stderr, cb) {
-
-            var reg = /\*\s+daily\/(\S+)/,
-                match = stdout.match(reg);
-
-            if (!match) {
-                grunt.log.error('当前分支为 master 或者名字不合法(daily/x.y.z)，请切换到daily分支'.red);
-                grunt.log.error('创建新daily分支：grunt newbranch'.yellow);
-                grunt.log.error('只执行构建：grunt build'.yellow);
-                return;
-            }
-            grunt.log.write(('当前分支：' + match[1]).green);
-            grunt.config.set('currentBranch', match[1]);
-            done();
-        });
-
-        // 构建和发布任务
-        if (!type) {
-            task.run(['build']);
-        } else if ('publish' === type || 'pub' === type) {
-            task.run(['exec:tag', 'exec:publish']);
-        } else if ('prepub' === type) {
-            task.run(['exec:add', 'exec:commit:' + msg]);
-            task.run(['exec:prepub']);
-        }
-
-    });
 
 };
